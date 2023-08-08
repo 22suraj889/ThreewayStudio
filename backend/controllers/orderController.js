@@ -22,6 +22,7 @@ const postOrder = async (req, res) => {
   } = req.body;
 
   try {
+    console.log(transporter);
     const transport = await User.findOne({ name: transporter });
     console.log(transport);
     const newOrder = await Order.create({
