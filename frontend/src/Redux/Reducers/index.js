@@ -4,6 +4,6 @@ import OrderReducer from "./OrderReducer";
 import UserReducer from "./UserReducer";
 export default combineReducers({
   auth: AuthReducer,
-  order: OrderReducer,
+  orders: OrderReducer,
   allUsers: UserReducer,
 });

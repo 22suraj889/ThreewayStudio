@@ -32,6 +32,7 @@ const Navbar = () => {
         color="primary"
         onClick={() => {
           dispatch(logout());
+          navigate("/auth");
         }}
       >
         Logout

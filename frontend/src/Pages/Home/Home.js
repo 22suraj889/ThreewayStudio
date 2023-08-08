@@ -1,18 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Manufacturer from "./Manufacturer";
 import Transporter from "./Transporter";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 const Home = () => {
-  const user = JSON.parse(localStorage.getItem("profile"));
-  console.log(user);
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
+  const location = useLocation();
+  useEffect(() => {
+    setUser(JSON.parse(localStorage.getItem("profile")));
+  }, [location]);
+
   return (
     <div>
-      
-      {user?.result?.type === "manufacturer" ? (
-        <Manufacturer user={user} />
-      ) : (
-        <Transporter />
-      )}
+      {user &&
+        (user?.result?.type === "manufacturer" ? (
+          <Manufacturer user={user} />
+        ) : (
+          <Transporter />
+        ))}
     </div>
   );
 };
