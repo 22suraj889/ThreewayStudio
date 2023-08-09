@@ -7,6 +7,7 @@ const dotenv = require("dotenv");
 const userRoutes = require("./routes/userRoute");
 const orderRoutes = require("./routes/orderRoute");
 const chatRoutes = require("./routes/chatRoute");
+const messageRoutes = require("./routes/messageRoutes");
 const app = express();
 connectDB();
 
@@ -19,6 +20,7 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use("/users", userRoutes);
 app.use("/orders", orderRoutes);
 app.use("/chats", chatRoutes);
+app.use("/message", messageRoutes);
 app.get("/", (req, res) => {
   res.send("Hello");
 });

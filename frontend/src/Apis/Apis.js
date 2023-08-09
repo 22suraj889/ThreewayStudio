@@ -38,3 +38,11 @@ export const createChat = (id) => {
 export const fetchChats = () => {
   return API.get(`${baseURL}/chats`);
 };
+
+export const sendMessage = (content, chatId) => {
+  return API.post(`${baseURL}/message`, { content, chatId });
+};
+
+export const fetchMessage = (chatId) => {
+  return API.get(`${baseURL}/message/${chatId}`);
+};

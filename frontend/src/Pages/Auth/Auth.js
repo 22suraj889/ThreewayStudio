@@ -38,9 +38,10 @@ const Auth = () => {
     setAuthData({ ...authData, [e.target.name]: e.target.value });
   };
   return (
-    <div className="min-h-screen bg-cover bg-center flex items-center justify-center">
+    <div className="min-h-screen bg-cover bg-center flex flex-col items-center justify-center">
+      <h1 className="text-lg font-bold">{showLogin ? "Login" : "Register"}</h1>
       <form
-        className="bg-white rounded-lg shadow-lg p-10 max-w-xl absolute right-5"
+        className="bg-white flex flex-col rounded-lg shadow-lg p-10 max-w-xl"
         onSubmit={onSubmitHandler}
       >
         {!showLogin && (
