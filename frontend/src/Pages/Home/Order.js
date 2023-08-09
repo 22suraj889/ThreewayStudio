@@ -1,7 +1,16 @@
 import { Button } from "@material-ui/core";
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { accessChat } from "../../Redux/Actions/ChatAction";
 
 const Order = ({ order }) => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const onChatBtnClick = () => {
+    dispatch(accessChat(order.manufacturer));
+    navigate("/chat");
+  };
   return (
     <div className="w-2/4 bg-red-200 flex flex-col justify-center mt-6 pt-6 pr-6 pl-6 pb-3">
       <p>OrderID: {order.orderID}</p>
@@ -18,6 +27,7 @@ const Order = ({ order }) => {
           variant="contained"
           color="primary"
           style={{ width: "10rem", height: "3rem" }}
+          onClick={onChatBtnClick}
         >
           Chat
         </Button>
