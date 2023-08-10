@@ -13,8 +13,8 @@
 # Transporter dashboard
 <img width="960" alt="image" src="https://github.com/22suraj889/ThreewayStudio/assets/75240234/4506ae99-c34c-46bd-9be5-f48ca9e1837f">
 
-
-
+# Chat Page
+<img width="960" alt="image" src="https://github.com/22suraj889/ThreewayStudio/assets/75240234/2299da96-6553-4ba7-9139-14b4a9ffe5c6">
 
  
 
