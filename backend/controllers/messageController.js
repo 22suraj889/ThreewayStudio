@@ -28,10 +28,13 @@ const sendMessage = async (req, res) => {
 };
 
 const allMessages = async (req, res) => {
+  const { chatId } = req.params;
   try {
-    const messages = await Message.find({ chat: req.params.chatId })
+    const messages = await Message.find({ chat: chatId })
       .populate("sender", "name email")
       .populate("chat");
+
+    console.log("Hi" + messages);
     res.status(200).send(messages);
   } catch (error) {
     console.log(error);

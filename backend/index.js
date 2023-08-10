@@ -24,6 +24,39 @@ app.use("/message", messageRoutes);
 app.get("/", (req, res) => {
   res.send("Hello");
 });
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log("Server running on port 5000");
+});
+
+const io = require("socket.io")(server, {
+  pingTimeout: 6000,
+  cors: {
+    origin: "*",
+  },
+});
+
+io.on("connection", (socket) => {
+  console.log("connection to socket.io");
+
+  socket.on("setup", (userData) => {
+    socket.join(userData?._id);
+    console.log(userData?._id);
+    socket.emit("connected");
+  });
+
+  socket.on("join chat", (room) => {
+    socket.join(room);
+    console.log("User Joined Room " + room);
+  });
+
+  socket.on("new message", (newMessageReceived) => {
+    let chat = newMessageReceived.chat;
+    if (!chat.users) return console.log("chat users not defined");
+
+    chat.users.forEach((user) => {
+      if (user.id === newMessageReceived.sender._id) return;
+
+      socket.in(user._id).emit("message recieved", newMessageReceived);
+    });
+  });
 });

@@ -3,8 +3,6 @@ const Chat = require("../models/chatModel");
 
 const accessChat = async (req, res) => {
   const { id } = req.params;
-  console.log(id);
-  console.log(req.userId);
   if (!mongoose.Types.ObjectId.isValid(id)) {
     console.log("User id is wrong");
     return res.status(400).json({ message: "User id is wrong" });
@@ -34,7 +32,6 @@ const accessChat = async (req, res) => {
         "-password"
       );
 
-      console.log(fullChat);
       res.status(200).send(fullChat);
     } catch (error) {
       console.log(error);
@@ -51,7 +48,6 @@ const fetchChats = async (req, res) => {
       .populate("latestMessage")
       .sort({ updatedAt: -1 });
 
-    console.log(results);
     res.status(200).send(results);
   } catch (error) {
     console.log(error);

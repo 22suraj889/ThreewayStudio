@@ -1,17 +1,42 @@
 import { Button, TextField } from "@material-ui/core";
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { sendMessage } from "../../Apis/Apis";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { sendMsg } from "../../Redux/Actions/MessageAction";
+import Messages from "./Messages";
 
-const ChatBox = ({ currentChat }) => {
-  const [message, setMessage] = useState(null);
+const ChatBox = ({
+  currentAllMessages,
+  setCurrentAllMessages,
+  currentChat,
+  socket,
+}) => {
+  const [message, setMessage] = useState("");
+
+  const user = JSON.parse(localStorage.getItem("profile"));
   const dispatch = useDispatch();
+  const allMessages = useSelector((state) => state.messages);
   const onSendBtnClick = () => {
-    sendMessage(message, currentChat._id);
+    dispatch(sendMsg(message, currentChat?._id, socket));
+    setMessage("");
   };
+  useEffect(() => {
+    setCurrentAllMessages(allMessages);
+  }, [allMessages]);
+
+  let name = "";
+  if (currentChat?.users[0]?.name === user._id) {
+    name = currentChat?.users[0]?.name;
+  } else {
+    name = currentChat?.users[1]?.name;
+  }
   return (
     <div>
-      <h1>Chat with {currentChat?.users[0]?.name}</h1>
+      <h1>Chat with {name}</h1>
+      <div>
+        {currentAllMessages && (
+          <Messages currentAllMessages={currentAllMessages} />
+        )}
+      </div>
       <div className="absolute bottom-1.5	">
         <TextField
           name="content"
