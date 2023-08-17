@@ -71,8 +71,8 @@ const Auth = () => {
           <TextField
             name="address"
             label="Address"
-            type="address"
-            value={authData.password}
+            type="text"
+            value={authData.address}
             onChange={handleChangeAuthData}
           />
         )}

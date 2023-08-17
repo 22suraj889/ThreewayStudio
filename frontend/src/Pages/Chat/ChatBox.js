@@ -24,10 +24,10 @@ const ChatBox = ({
   }, [allMessages]);
 
   let name = "";
-  if (currentChat?.users[0]?.name === user._id) {
-    name = currentChat?.users[0]?.name;
-  } else {
+  if (currentChat?.users[0]?._id === user?.result._id) {
     name = currentChat?.users[1]?.name;
+  } else {
+    name = currentChat?.users[0]?.name;
   }
   return (
     <div>

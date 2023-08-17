@@ -52,10 +52,11 @@ const Chat = () => {
   });
 
   useEffect(() => {
-    const data = currentAllMessages?.find(msg => msg._id === currentChat)
+    const data = currentAllMessages?.find((msg) => msg._id === currentChat);
     // socket.emit("new message", currentAllMessages);
   }, [currentAllMessages]);
 
+  console.log(chats);
   return (
     <div className="flex  min-h-screen mt-5">
       <div className="w-1/4 border-r-pink-600	">

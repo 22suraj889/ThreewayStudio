@@ -11,10 +11,11 @@ const AllChats = ({ chat, setCurrentChat }) => {
   };
 
   let name = "";
-  if (chat?.users[0]?.name === user._id) {
-    name = chat?.users[0]?.name;
-  } else {
+
+  if (chat?.users[0]?._id === user?.result?._id) {
     name = chat?.users[1]?.name;
+  } else {
+    name = chat?.users[0]?.name;
   }
   return <div onClick={onClickChatHandler}>{name}</div>;
 };
